@@ -1,0 +1,13 @@
+
+esse<V><imperf><ind><active><sg><3>
+unus<NUM><masc><sg><nom>
+homo<N><masc><sg><nom>
+destinare<V><part><perf><passive><masc><sg><nom>
+ex<PREP>
+Deus<PN><masc><sg><abl>
+PUNCT_,
+qui<PRO><rel><masc><sg><gen>
+cognomen<N><neut><sg><nom>
+esse<V><imperf><ind><active><sg><3>
+Ioannes<PN><masc><sg><nom>
+PUNCT_.

@@ -1,0 +1,17 @@
+et<CONJ>
+ego<PRO><pers><1><sg><nom>
+debere<V><pres><ind><active><sg><3>
+specere<V><perf><ind><active><sg><1>
+et<CONJ>
+debere<V><pres><inf><active>
+*borne<N><masc><sg><gen>
+servator<N><masc><sg><acc>
+qui<PRO><rel><masc><sg><gen>
+hic<PRO><dem><masc><sg><nom>
+esse<V><pres><ind><active><sg><3>
+ille<PRO><dem><masc><sg><nom>
+filius<PN><masc><sg><gen>
+de<PREP>
+divus<PN><masc><sg><gen>
+PUNCT_.
+PUNCT_"

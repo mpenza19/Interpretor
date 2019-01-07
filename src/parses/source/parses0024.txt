@@ -1,0 +1,16 @@
+# newdoc
+# newpar
+# sent_id = 1
+1	Let	let	VERB	VB	VerbForm=Inf	0	root	_	_
+2	us	us	PRON	PRP	Case=Acc|Number=Plur|Person=1|PronType=Prs	1	obj	_	_
+3	have	have	VERB	VB	VerbForm=Inf	1	xcomp	_	_
+4	an	an	DET	DT	Definite=Ind|PronType=Art	5	det	_	_
+5	answer	answer	NOUN	NN	Number=Sing	3	obj	_	_
+6	for	for	ADP	IN	_	7	case	_	_
+7	those	those	PRON	DT	Number=Plur|PronType=Dem	5	nmod	_	_
+8	who	who	PRON	WP	PronType=Rel	9	nsubj	_	_
+9	sent	sent	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	7	acl:relcl	_	_
+10	us	us	PRON	PRP	Case=Acc|Number=Plur|Person=1|PronType=Prs	9	obj	_	_
+11	.	.	PUNCT	.	_	1	punct	_	_
+
+

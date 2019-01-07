@@ -1,0 +1,24 @@
+# newdoc
+# newpar
+# sent_id = 1
+1		*nathan	ADP	IN	_	3	case	_	_
+2		'	PUNCT	``	_	3	punct	_	_
+3		unus	DET	DT	Definite=Ind|PronType=Art	5	det	_	_
+4		-	PUNCT	:	_	3	punct	_	_
+5		altitudo	NOUN	NN	Number=Sing	6	nsubj	_	_
+6		dico	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	0	root	_	_
+7		ad	ADP	TO	_	8	case	_	_
+8		is	PRON	PRP	Case=Acc|Gender=Masc|Number=Sing|Person=3|PronType=Prs	6	obl	_	_
+9		,	PUNCT	,	_	14	punct	_	_
+10		"	PUNCT	``	_	14	punct	_	_
+11		*can	ADJ	JJ	Degree=Pos	12	amod	_	_
+12		alius	NOUN	NN	Number=Sing	14	nsubj	_	_
+13		maturus	ADJ	JJ	Degree=Pos	14	advmod	_	_
+14		venio	VERB	VB	VerbForm=Inf	6	ccomp	_	_
+15		ex	ADP	RP	_	14	compound:prt	_	_
+16		de	ADP	IN	_	17	case	_	_
+17		*nazareth	PROPN	NNP	Number=Sing	14	obl	_	_
+18		?	PUNCT	.	_	14	punct	_	_
+19		"	PUNCT	''	_	14	punct	_	_
+
+

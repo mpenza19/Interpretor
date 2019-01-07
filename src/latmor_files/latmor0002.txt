@@ -1,0 +1,14 @@
+in<PREP>
+is<PRO><dem><masc><sg><abl>
+esse<V><imperf><ind><active><sg><3>
+vita<N><fem><sg><nom>
+PUNCT_,
+et<CONJ>
+ille<PRO><dem><masc><sg><nom>
+vita<N><fem><sg><gen>
+esse<V><imperf><ind><active><sg><3>
+ille<PRO><dem><masc><sg><nom>
+lux<N><masc><sg><gen>
+de<PREP>
+homo<N><masc><pl><gen>
+PUNCT_.

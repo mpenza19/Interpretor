@@ -1,0 +1,30 @@
+# newdoc
+# newpar
+# sent_id = 1
+1	I	I	PRON	PRP	Case=Nom|Number=Sing|Person=1|PronType=Prs	5	nsubj	_	_
+2	myself	myself	PRON	PRP	Case=Acc|Number=Sing|Person=1|PronType=Prs|Reflex=Yes	5	nsubj	_	_
+3	did	do	AUX	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	5	aux	_	_
+4	not	not	PART	RB	Polarity=Neg	5	advmod	_	_
+5	know	know	VERB	VB	VerbForm=Inf	0	root	_	_
+6	him	him	PRON	PRP	Case=Acc|Gender=Masc|Number=Sing|Person=3|PronType=Prs	5	obj	_	_
+7	;	;	PUNCT	:	_	12	punct	_	_
+8	but	but	CCONJ	CC	_	12	cc	_	_
+9	for	for	ADP	IN	_	10	case	_	_
+10	this	this	PRON	DT	Number=Sing|PronType=Dem	12	obl	_	_
+11	I	I	PRON	PRP	Case=Nom|Number=Sing|Person=1|PronType=Prs	12	nsubj	_	_
+12	came	come	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	5	conj	_	_
+13	baptizing	baptize	VERB	VBG	VerbForm=Ger	12	xcomp	_	_
+14	with	with	ADP	IN	_	15	case	_	_
+15	water	water	NOUN	NN	Number=Sing	13	obl	_	_
+16	,	,	PUNCT	,	_	21	punct	_	_
+17	that	that	SCONJ	IN	_	21	mark	_	_
+18	he	he	PRON	PRP	Case=Nom|Gender=Masc|Number=Sing|Person=3|PronType=Prs	21	nsubj:pass	_	_
+19	might	might	AUX	MD	VerbForm=Fin	21	aux	_	_
+20	be	be	AUX	VB	VerbForm=Inf	21	aux:pass	_	_
+21	revealed	reveal	VERB	VBN	Tense=Past|VerbForm=Part	12	advcl	_	_
+22	to	to	ADP	TO	_	23	case	_	_
+23	Israel	Israel	PROPN	NNP	Number=Sing	21	obl	_	_
+24	.	.	PUNCT	.	_	5	punct	_	_
+25	"	"	PUNCT	''	_	5	punct	_	_
+
+

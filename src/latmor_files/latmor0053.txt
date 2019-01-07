@@ -1,0 +1,11 @@
+*philip<N><masc><sg><nom>
+dicare<V><imperf><ind><active><sg><3>
+ad<PREP>
+is<PRO><dem><masc><sg><acc>
+PUNCT_,
+PUNCT_"
+venire<V><pres><inf><active>
+et<CONJ>
+specere<V><pres><inf><active>
+PUNCT_.
+PUNCT_"

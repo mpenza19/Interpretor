@@ -1,0 +1,22 @@
+
+This package contains an English finite state morphology which is based
+on the XTag morphology available from the University of Pennsylvania.
+
+In order to run the tools, you first have to install the SFST tools.
+
+Then you can compile the morphology by running the command "make".
+
+Finally, you can test it:
+
+> fst-mor emor.a
+
+
+
+To run the morphology in batch mode use:
+> echo "walking" | fst-infl2 emor.ca
+
+
+You can modify the morphology by adapting the file xtag-morph-1.5a.gz
+and running "make" again.
+
+Helmut Schmid

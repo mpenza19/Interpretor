@@ -1,0 +1,9 @@
+is<PRO><dem><masc><sg><nom>
+dicare<V><imperf><ind><active><sg><3>
+PUNCT_,
+PUNCT_"
+ego<PRO><pers><1><sg><nom>
+esse<V><pres><subj><active><sg><1>
+non<PART>
+PUNCT_.
+PUNCT_"

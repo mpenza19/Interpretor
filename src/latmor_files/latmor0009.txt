@@ -1,0 +1,15 @@
+is<PRO><dem><masc><sg><nom>
+venire<V><imperf><ind><active><sg><3>
+ad<PREP>
+is<PRO><dem><masc><sg><gen>
+suus<PRO><poss><fem><sg><acc>
+domus<N><fem><sg><acc>
+PUNCT_,
+et<CONJ>
+is<PRO><dem><masc><sg><gen>
+suus<PRO><poss><fem><pl><nom>
+gens<N><fem><pl><nom>
+excipere<V><imperf><ind><active><pl><3>
+is<PRO><dem><masc><sg><acc>
+non<PART>
+PUNCT_.

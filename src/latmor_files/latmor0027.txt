@@ -1,0 +1,9 @@
+hodie<ADV>
+is<PRO><dem><masc><pl><nom>
+destinare<V><imperf><ind><active><sg><3>
+esse<V><part><perf><passive><masc><sg><nom>
+esse<V><imperf><ind><active><pl><3>
+ex<PREP>
+ille<PRO><dem><masc><sg><nom>
+*pharisee<PN><masc><sg><abl>
+PUNCT_.

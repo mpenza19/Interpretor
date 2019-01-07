@@ -1,0 +1,15 @@
+ille<PRO><dem><masc><sg><nom>
+lucidus<ADJ><positive><masc><pl><gen>
+fulgor<N><masc><pl><gen>
+in<PREP>
+ille<PRO><dem><masc><sg><nom>
+obscuritas<N><fem><sg><abl>
+PUNCT_,
+et<CONJ>
+ille<PRO><dem><masc><sg><nom>
+obscuritas<N><fem><sg><nom>
+debere<V><pres><ind><active><sg><3>
+non<PART>
+convincere<V><pres><inf><active>
+is<PRO><dem><neut><sg><acc>
+PUNCT_.

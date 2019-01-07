@@ -1,0 +1,14 @@
+et<CONJ>
+is<PRO><dem><masc><sg><nom>
+invenire<V><imperf><ind><active><sg><3>
+*philip<N><masc><sg><acc>
+et<CONJ>
+dicare<V><imperf><ind><active><sg><3>
+ad<PREP>
+is<PRO><dem><masc><sg><acc>
+PUNCT_,
+PUNCT_"
+laborare<V><pres><inf><active>
+ego<PRO><pers><1><sg><acc>
+PUNCT_.
+PUNCT_"

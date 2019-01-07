@@ -1,0 +1,8 @@
+et<CONJ>
+is<PRO><dem><masc><sg><nom>
+respondere<V><imperf><ind><active><sg><3>
+PUNCT_,
+PUNCT_"
+no<INTJ>
+PUNCT_.
+PUNCT_"

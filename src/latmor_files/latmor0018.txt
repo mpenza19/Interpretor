@@ -1,0 +1,9 @@
+et<CONJ>
+is<PRO><dem><masc><pl><nom>
+scitari<V><imperf><ind><deponens><pl><3>
+is<PRO><dem><masc><sg><acc>
+PUNCT_,
+PUNCT_"
+qui<PRO><rel><masc><pl><acc>
+deinde<ADV>
+PUNCT_?

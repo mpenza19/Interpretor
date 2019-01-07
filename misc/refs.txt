@@ -1,1 +1,1 @@
-DICTPAGE.RAW: raw Latin-English dictionary file. http://archives.nd.edu/whitaker/dictpage.htm
+DICTPAGE.RAW: raw Latin-English dictionary file. http://archives.nd.edu/whitaker/dictpage.htm. Modified to add Lat:sum.

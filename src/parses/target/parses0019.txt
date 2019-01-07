@@ -1,0 +1,12 @@
+# newdoc
+# newpar
+# sent_id = 1
+1		sum	AUX	VBP	Mood=Ind|Tense=Pres|VerbForm=Fin	3	cop	_	_
+2		tu	PRON	PRP	Case=Nom|Person=2|PronType=Prs	3	nsubj	_	_
+3		*eli	PROPN	NNP	Number=Sing	0	root	_	_
+4		'	PUNCT	''	_	5	punct	_	_
+5		jah	INTJ	UH	_	3	dep	_	_
+6		?	PUNCT	.	_	5	punct	_	_
+7		"	PUNCT	''	_	5	punct	_	_
+
+

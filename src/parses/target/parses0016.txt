@@ -1,0 +1,32 @@
+# newdoc
+# newpar
+# sent_id = 1
+1		et	CCONJ	CC	_	5	cc	_	_
+2		hic	PRON	DT	Number=Sing|PronType=Dem	5	nsubj	_	_
+3		sum	AUX	VBZ	Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin	5	cop	_	_
+4		ille	DET	DT	Definite=Def|PronType=Art	5	det	_	_
+5		*testimony	NOUN	NN	Number=Sing	12	nsubj	_	_
+6		de	ADP	IN	_	7	case	_	_
+7		Ioannes	PROPN	NNP	Number=Sing	5	nmod	_	_
+8		,	PUNCT	,	_	12	punct	_	_
+9		quando	SCONJ	WRB	PronType=Int	12	advmod	_	_
+10		ille	DET	DT	Definite=Def|PronType=Art	11	det	_	_
+11		*jew	NOUN	NNS	Number=Plur	12	nsubj	_	_
+12		*sent	VERB	VBP	Mood=Ind|Tense=Pres|VerbForm=Fin	0	root	_	_
+13		presbyter	NOUN	NNS	Number=Plur	12	obj	_	_
+14		et	CCONJ	CC	_	15	cc	_	_
+15		*levite	PROPN	NNPS	Number=Plur	13	conj	_	_
+16		ex	ADP	IN	_	17	case	_	_
+17		Hierusalem	PROPN	NNP	Number=Sing	12	obl	_	_
+18		*to	PART	TO	_	19	mark	_	_
+19		scitor	VERB	VB	VerbForm=Inf	12	advcl	_	_
+20		is	PRON	PRP	Case=Acc|Gender=Masc|Number=Sing|Person=3|PronType=Prs	19	obj	_	_
+21		,	PUNCT	,	_	25	punct	_	_
+22		"	PUNCT	``	_	25	punct	_	_
+23		qui	PRON	WP	PronType=Int	25	nsubj	_	_
+24		sum	AUX	VBP	Mood=Ind|Tense=Pres|VerbForm=Fin	25	cop	_	_
+25		tu	PRON	PRP	Case=Nom|Person=2|PronType=Prs	26	nsubj	_	_
+26		?	PUNCT	.	_	19	punct	_	_
+27		"	PUNCT	''	_	12	punct	_	_
+
+

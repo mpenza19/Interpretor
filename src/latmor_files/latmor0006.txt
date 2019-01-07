@@ -1,0 +1,15 @@
+is<PRO><dem><masc><sg><nom>
+esse<V><imperf><ind><active><sg><3>
+non<PART>
+ille<PRO><dem><masc><sg><nom>
+lux<N><masc><sg><nom>
+PUNCT_,
+sed<CONJ>
+venire<V><imperf><ind><active><sg><3>
+*to<PART>
+gerere<V><pres><inf><active>
+servator<N><masc><sg><acc>
+ad<PREP>
+ille<PRO><dem><masc><sg><nom>
+lux<N><masc><sg><acc>
+PUNCT_.
