@@ -73,8 +73,8 @@ newpunct = {
     '!': ' ! ',
     ':': ' : ',
     ';': ' ; ',
-    '–': ' – ',
-    '—': ' — ',
+    '–': ' - ',
+    '—': ' - ',
     '-': ' - ',
 
     
@@ -106,7 +106,9 @@ macron_replacements = {
 
 def multiple_replace(text, adict):
     """ Adapted from 'Python Cookbook' 2nd Ed.: 1.18. Replacing Multiple Patterns in a Single Pass """
-    rx = re.compile('|'.join(map(re.escape, adict)))
+    x = '|'.join(map(re.escape, adict))
+    while "\'" in x: x = x.replace("\'", "")
+    rx = re.compile(x)
     def one_xlat(match):
         return adict[match.group(0)]
     return rx.sub(one_xlat, text)

@@ -1,0 +1,3 @@
+BATCH GENERATION:
+reading transducer from file "LatMor/latmor-gen.a"...
+finished.

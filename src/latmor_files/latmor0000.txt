@@ -1,0 +1,6 @@
+is<PRO><dem><masc><sg><nom>
+*ador<V><imperf><ind><deponens><sg><3>
+auscultare<V><part><perf><passive><masc><sg><nom>
+ad<PREP>
+musica<N><fem><sg><acc>
+PUNCT_.

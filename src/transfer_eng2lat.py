@@ -4,6 +4,9 @@ import sys, os, string
 from compatibility import call_python3
 import multiprocessing as mp
 
+reload(sys)
+sys.setdefaultencoding('UTF8')
+
 pos_converter = {
         "NOUN": 'n',
         "PROPN": 'n',
@@ -31,11 +34,11 @@ def write_latparse(engparse_filename):
     filenum = engparse_filename[6:engparse_filename.find(".")].zfill(4)
 
     with open("./parses/source/"+engparse_filename, "r") as f:
-        raw_engparse = [line.split('\t') for line in f]
+        raw_engparse = [line.split('\t') for line in f if line != '\n' and not line.startswith("#")]
 
     direction = "eng2lat"
-    eng_lemmas = [line[2] for line in raw_engparse if line != ['\n'] and not line[0].startswith('#')]
-    parse_pos_list = [line[3] for line in raw_engparse if line != ['\n'] and not line[0].startswith('#')]
+    eng_lemmas = [line[2] for line in raw_engparse]
+    parse_pos_list = [line[3] for line in raw_engparse]
     mwn_pos_list = get_mwn_pos_list(parse_pos_list)
     
     arg_list = [direction, eng_lemmas, mwn_pos_list]
@@ -45,10 +48,6 @@ def write_latparse(engparse_filename):
     with open("./parses/target/"+engparse_filename[:6]+filenum+".txt", "w") as f:
         lemma_index = 0
         for line in raw_engparse:
-            if line == ['\n'] or line[0].startswith("#"):
-                f.write('\t'.join(line))
-                continue
-
             line[1] = ''
             line[2] = lat_lemmas[lemma_index]
             lemma_index += 1

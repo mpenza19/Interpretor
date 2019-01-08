@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 from anytree import Node, RenderTree, LevelOrderIter
 from anytree.exporter import DotExporter
 from anytree.dotexport import RenderTreeGraph
@@ -168,9 +170,18 @@ def print_tree(root):
         print "%s%s :: %s :: %s" % (pre.encode('utf8'), node.name, node.word.deprel, node.word.orig_lemma)
     print "\n---------\n"
 
+def print_orig_tree(root):
+    # Print tree from root
+    for pre, fill, node in RenderTree(root):
+        print "%s %s :: %s" % (pre.encode('utf8'), node.word.orig_lemma, node.word.deprel)
+    print "\n---------\n"
+
 
 def test_eng_tree():
     parse_filename = "parses0000.txt"
-    maketree(parse_filename)
+    root, nodes = maketree(parse_filename)
+    print "\n\n"
+    print_orig_tree(root)
+    print "\n\n"
 
-#test_eng_tree()
+test_eng_tree()

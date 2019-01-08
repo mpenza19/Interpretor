@@ -104,10 +104,9 @@ class Word:
     def update(self, in_handle_aux=False, exclusions=list()):
         #print "MAKING UPDATE ON:", self.lemma
         
-        attr_list = [attr for attr in self.__dict__ if attr not in ("latmor", "get_latmor", "nodes", "node_id") and hasattr(self, "get_"+attr) and callable(getattr(self, "get_"+attr)) and attr not in exclusions]
+        attr_list = [attr for attr in self.__dict__ if attr not in ("latmor", "get_latmor", "verb_form", "get_verb_form", "tense", "get_tense", "voice", "get_voice", "nodes", "node_id") and hasattr(self, "get_"+attr) and callable(getattr(self, "get_"+attr)) and attr not in exclusions]
 
-        for i in range(len(attr_list)):
-            self.update_attr(attr_list[i])
+        for myattr in attr_list: self.update_attr(myattr)
         
         if hasattr(self, "get_latmor"): self.update_attr("latmor")
         if hasattr(self, "handle_aux") and callable(getattr(self, "handle_aux")) and not in_handle_aux: self.handle_aux()
@@ -298,7 +297,7 @@ class Noun(Word):
                     child.ignore()
                     return "gen"
 
-                if child.orig_lemma in dative_triggers:
+                if child.orig_lemma in dative_triggers and child.pos == PREP:
                     child.ignore()
                     return "dat"
                 
@@ -365,8 +364,12 @@ class Noun(Word):
             pers = int(self.feats["Person"]) if "Person" in self.feats.keys() else False
             refl = "refl" if "Reflex" in self.feats.keys() else False
 
+        
+
             if ptlm == "pers":
                 if pers != 3:
+                    self.ignore()
+
                     if self.lemma == "nos": self.lemma = "ego"
                     if self.lemma == "vos": self.lemma = "tu"
                     
@@ -380,6 +383,7 @@ class Noun(Word):
                     return "%s<%s><%s><%s><%s><%s>" % (self.lemma, PRONlm, ptlm, self.gender, self.number, self.case)
             
             elif not poss:
+                self.ignore()
                 return "%s<%s><%s><%s><%s><%s>" % (self.lemma, PRONlm, ptlm, self.gender, self.number, self.case)
             
             else:
@@ -503,8 +507,8 @@ class Verb(Word):
         self.number = self.get_number()
         self.person = self.get_person()
         self.voice = self.get_voice()
-        self.gender = self.get_gender()
         self.case = self.get_case()
+        self.gender = self.get_gender()
         self.handle_aux()
         self.latmor = self.get_latmor()
 
@@ -519,7 +523,7 @@ class Verb(Word):
         return "Fin"
 
     def get_inf(self):  
-        # Irregular case due to LatMor
+        # Irregular cases due to LatMor
         if self.form.startswith("repuli"):
             self.form = "repp" + self.form[3:]
             self.lemma = "repello"
@@ -545,8 +549,6 @@ class Verb(Word):
         return self.lemma
     
     def get_tense(self):
-        
-        
         # Participles are special case
         if self.verb_form == "Part":
             if "Tense" in self.feats:
@@ -594,7 +596,7 @@ class Verb(Word):
             if voice == "Act":  return "active"
             if voice == "Pass": return "passive"
 
-            return "passive"
+            return "passive" if self.tense == "perf" else "active"
 
         # Non-participle cases
         if self.inf == "fieri": return "active"
@@ -610,7 +612,7 @@ class Verb(Word):
 
     def get_mood(self):
         if self.verb_form == "Fin":
-            if self.deprel in ("ccomp", "advcl"): return "subj"
+            if self.deprel in ("ccomp", "advcl") and self.tense != "futureI": return "subj"
 
             mood = self.feats["Mood"] if "Mood" in self.feats else "Ind"
             
@@ -624,35 +626,59 @@ class Verb(Word):
         return None
 
     def get_number(self):
+        if self.verb_form == "gerundivum":
+            return self.number
+        
         if self.verb_form == "Fin":
+            if self.deprel in ("aux", "aux:pass") and self.siblings:
+                for sib in self.siblings:
+                    if hasattr(sib, "number") and sib.deprel in ("nsubj", "nsubj:pass") and sib.number: 
+                        return sib.number
+            
+            if self.deprel in ("acl:relcl", "aux", "aux:pass") and self.parent and hasattr(self.parent, "number") and self.parent.number:
+                return self.parent.number
+
+            if self.deprel == "advcl" and self.siblings:
+                for sib in self.siblings:
+                    if hasattr(sib, "number") and sib.deprel == "obj" and sib.number: 
+                        return sib.number
+
+            if self.children:
+                for child in self.children:
+                    if child.deprel in ("nsubj", "nsubj:pass"):
+                        if hasattr(child, "number") and child.number: 
+                            return child.number
+
             if "Number" in self.feats:
                 number = self.feats["Number"]
                 if number == "Sing": return "sg"
                 if number == "Plur": return "pl"
 
-            if not self.children: return "sg"
-            
-            for child in self.children:
-                if child.deprel in ("nsubj", "nsubj:pass"):
-                    if hasattr(child, "number") and child.number: return child.number
-
-            if self.deprel == "acl:relcl" and self.parent and hasattr(self.parent, "number"):
-                return self.parent.number
-            
             return "sg"
 
         if self.verb_form == "Part":
-            if self.deprel == "acl" and self.parent and hasattr(self.parent, "number"):
-                return self.parent.number
-
             if self.children:
                 for child in self.children:
                     if child.deprel in ("nsubj", "nsubj:pass") and hasattr(child, "number"):
                         return child.number
             
+            if self.deprel == "acl" and self.parent and hasattr(self.parent, "number"):
+                return self.parent.number
+
+            if self.deprel == "advcl" and self.siblings:
+                for sib in self.siblings:
+                    if hasattr(sib, "number") and sib.deprel == "obj": 
+                        return sib.number
+
+            if self.siblings:
+                for sib in self.siblings:
+                    if hasattr(sib, "number"): 
+                        return sib.number
+            
             if "Number" in self.feats:
                 if self.feats["Number"] == "Sing": return "sg"
                 if self.feats["Number"] == "Plur": return "pl"
+            
             return "sg"
 
         # Only finite verbs and participles have number    
@@ -662,9 +688,9 @@ class Verb(Word):
         if "Person" in self.feats:
             return int(self.feats["Person"])
         
-        if self.deprel == "acl:relcl" and self.parent and self.parent.deprel in ("nsubj", "nsubj:pass") and hasattr(self.parent, "person"):
+        if self.parent and hasattr(self.parent, "person") and self.deprel == "acl:relcl" and self.parent.deprel in ("nsubj", "nsubj:pass"):
             return self.parent.person
-        
+
         if not self.children:
             return 3
 
@@ -680,18 +706,40 @@ class Verb(Word):
                 for sib in self.siblings:
                     if sib.deprel in ("nsubj", "nsubj:pass") and hasattr(sib, "gender"):
                         return sib.gender
+        
+        if self.verb_form == "Part":
 
-        elif self.pos == VERBlm:
-            if self.verb_form == "Part":
-                if self.deprel == "acl" and self.parent and hasattr(parent, "gender"):
-                    return self.parent.gender
+            if self.siblings:
+                for sib in self.siblings:
+                    if hasattr(sib, "case") and sib.case == self.case and hasattr(sib, "gender"): 
+                        return sib.gender
+                        
+            if self.deprel == "advcl" and self.siblings:
+                for sib in self.siblings:
+                    if hasattr(sib, "gender") and sib.deprel == "obj": 
+                        return sib.gender
 
-                if self.children:
-                    for child in self.children:
-                        if child.deprel in ("nsubj", "nsubj:pass") and hasattr(child, "gender"):
-                            return child.gender
-                
-                return self.feats["Gender"].lower() if "Gender" in self.feats else "neut"
+            if self.siblings:
+                for sib in self.siblings:
+                    if hasattr(sib, "gender"): 
+                        return sib.gender
+                        
+            if self.deprel in ("acl", "acl:relcl") and self.parent and hasattr(parent, "gender"):
+                return self.parent.gender
+
+            if self.children:
+                for child in self.children:
+                    if hasattr(child, "case") and child.case == self.case and hasattr(child, "gender"):
+                        return child.gender
+            
+            if self.children:
+                for child in self.children:
+                    if hasattr(child, "gender"):
+                        return child.gender
+
+            
+            
+            return self.feats["Gender"].lower() if "Gender" in self.feats else "neut"
 
         # Only participles have gender
         return None
@@ -700,11 +748,21 @@ class Verb(Word):
         if self.verb_form == "Part":
             if self.deprel == "acl" and self.parent and hasattr(self.parent, "case"):
                 return self.parent.case
+
+            if self.deprel == "advcl" and self.siblings:
+                for sib in self.siblings:
+                    if hasattr(sib, "case") and sib.deprel == "obj": 
+                        return sib.case
             
             if self.children:
                 for child in self.children:
                     if child.deprel in ("nsubj", "nsubj:pass") and hasattr(child, "case"):
                         return child.case
+
+            if self.siblings:
+                for sib in self.siblings:
+                    if hasattr(sib, "case"): 
+                        return sib.case
 
             if self.parent and hasattr(self.parent, "case"):
                 return self.parent.case
@@ -713,7 +771,6 @@ class Verb(Word):
 
         # Only participles have case; default to nom
         return "nom"
-
 
     def handle_aux(self):
         if not self.children: return
@@ -725,9 +782,62 @@ class Verb(Word):
             if child.deprel == "mark" and child.orig_lemma == "to":
                 child.ignore()
 
-        if num_aux_children == 0: return
+        if num_aux_children == 0 and self.deprel not in ("aux", "aux:pass"): 
+            if self.verb_form != "Inf": pass
+            
+            for child in self.children:
+                if child.deprel == "cop" and child.orig_lemma == "be" and child.next.deprel == "mark" and child.next.orig_lemma == "to":
+                    self.verb_form = "Part"
+                    self.tense = "future"
+                    self.voice = "active"
 
-        if num_aux_children == 1:
+                    self.update(in_handle_aux=True, exclusions=["verb_form", "tense", "voice"])
+                    child.next.ignore()
+                    break
+
+            if self.orig_lemma == "have" and self.prev and (self.prev.orig_lemma == "to" or (self.prev.prev and self.prev.prev.orig_lemma == "to" and self.prev.orig_lemma == "not")):    
+                for child in self.children:
+                    if hasattr(child, "verb_form") and child.verb_form == "Part":
+                        myverbform = "Inf"
+                        myvoice = "active"
+                        mytense = "perf"
+
+                        if child.children:
+                            mygrandchild = None
+                            for grandchild in child.children:
+                                if grandchild.deprel == "aux:pass" and grandchild.orig_lemma == "be":
+                                    myvoice = "passive"
+                                    myverbform = "Part"
+                                    mygrandchild = grandchild
+                                    break
+                        
+
+                        self.pos = VERBlm
+                        self.orig_lemma = child.orig_lemma
+                        self.lemma = child.lemma
+                        self.verb_form = myverbform
+                        self.tense = mytense
+                        self.voice = myvoice
+                        self.update(in_handle_aux=True, exclusions=["orig_lemma", "lemma", "verb_form", "tense", "voice"])
+                        print "LATMOR", self.latmor
+
+                        if myvoice == "passive":
+                            child.pos = VERBlm
+                            child.orig_lemma = "be"
+                            child.lemma = "esse"
+                            child.verb_form = "Inf"
+                            child.tense = "pres"
+                            child.voice = "active"
+                            if mygrandchild: mygrandchild.ignore()
+                        else:
+                            child.ignore()
+                            
+                        child.update(in_handle_aux=True, exclusions=["orig_lemma", "lemma", "verb_form", "tense", "voice"])
+                        break
+
+          
+
+        elif num_aux_children == 1:
             if self.verb_form == "Inf":
                 for child in self.children:
                     if child.deprel == "aux": 
@@ -782,7 +892,7 @@ class Verb(Word):
                             self.update(in_handle_aux=True, exclusions=["verb_form", "tense"])
                             child.ignore()
                             break
-                        
+
                         elif child.orig_lemma == "be" and self.deprel in ("ccomp", "advcl") and child.verb_form == "Inf":
                             self.verb_form = "Fin" 
                             self.tense = "pres"
@@ -793,8 +903,43 @@ class Verb(Word):
                             child.ignore()
                             break
                         
+                        
+                        elif child.orig_lemma == "be" and self.deprel not in ("ccomp", "advcl", "xcomp") and child.prev and child.prev.deprel == "mark" and child.prev.orig_lemma == "to":
+                            aux_tense = child.tense
+                            
+                            child.verb_form = "Part"
+                            child.orig_lemma = self.orig_lemma
+                            child.lemma = self.lemma
+                            child.tense = "perf"
+                            child.voice = "passive"
+                            child.number = self.number
+                            child.update(in_handle_aux=True, exclusions=["orig_lemma", "lemma", "verb_form", "tense", "voice", "number"])
+                            child.verb_form = "gerundivum"
+                            #child.latmor = child.get_latmor()
+                            child.update(in_handle_aux=True, exclusions=["number"])
+                            print "LATMOR", child.latmor
 
-                        elif child.orig_lemma == "be" and self.deprel not in ("ccomp", "advcl"):
+                            self.verb_form = "Fin"
+                            self.orig_lemma = "be"
+                            self.lemma = "esse"
+                            self.tense = aux_tense
+                            self.voice = "active"
+                            self.update(in_handle_aux=True, exclusions=["verb_form", "orig_lemma", "lemma", "tense", "voice"])
+                           
+                            #child.ignore()
+                            child.prev.ignore()
+                            break
+
+                        elif child.orig_lemma == "be" and self.deprel not in ("ccomp", "advcl") and child.prev and child.prev.deprel == "mark" and child.prev.orig_lemma == "to":
+                            self.verb_form = "Inf"
+                            self.tense = "pres"
+                            self.voice = "passive"
+
+                            self.update(in_handle_aux=True, exclusions=["verb_form", "tense", "voice"])
+                            child.ignore()
+                            break
+                            
+                        elif child.orig_lemma == "be" and self.deprel not in ("ccomp", "advcl", "xcomp"):
                             self.verb_form = "Fin"
                             self.voice = "passive"
 
@@ -806,9 +951,8 @@ class Verb(Word):
                             self.update(in_handle_aux=True, exclusions=["verb_form", "tense", "voice"])
                             child.ignore()
                             break
-            return
 
-        if num_aux_children == 2: 
+        elif num_aux_children == 2: 
             if self.verb_form == "Part":
                 for child1 in self.children[:-1]:
                     child2 = child1.next if child1.next.orig_lemma != "not" else child1.next.next
@@ -893,18 +1037,58 @@ class Verb(Word):
                             child1.orig_lemma = self.orig_lemma
                             child1.lemma = self.lemma
                             child1.tense = "perf"
+                            child1.voice = "passive"
+                            child1.gender = self.gender
                             
                             self.verb_form = "Fin"
                             self.orig_lemma = "be"
                             self.lemma = "esse"
                             self.tense = aux_tense
+                            self.voice = "active"
 
-                            child1.update(exclusions=["orig_lemma", "lemma", "verb_form", "tense"])
-                            self.update(in_handle_aux=True, exclusions=["verb_form", "orig_lemma", "lemma", "tense"])
+                            child1.update(in_handle_aux=True, exclusions=["orig_lemma", "lemma", "verb_form", "tense", "voice"])
+                            self.update(in_handle_aux=True, exclusions=["verb_form", "orig_lemma", "lemma", "tense", "voice"])
                             child2.ignore()
                             break
 
-        if num_aux_children == 3:
+                        elif child1.orig_lemma == "must" and child2.orig_lemma == "be":
+                            aux_tense = child2.tense
+                           
+                            child2.verb_form = "Part"
+                            child2.orig_lemma = self.orig_lemma
+                            child2.lemma = self.lemma
+                            child2.tense = "perf"
+                            child2.voice = "passive"
+                            child2.number = self.number
+                            
+                            self.verb_form = "Fin"
+                            self.orig_lemma = "be"
+                            self.lemma = "esse"
+                            self.tense = aux_tense
+                            self.voice = "active"
+                            
+                            child2.update(in_handle_aux=True, exclusions=["orig_lemma", "lemma", "verb_form", "tense", "voice", "number"])
+                            self.update(in_handle_aux=True, exclusions=["verb_form", "orig_lemma", "lemma", "tense", "voice"])
+                            
+                            child2.verb_form = "gerundivum"
+                            child2.update(in_handle_aux=True, exclusions=["number"])
+                            print "LATMOR", child2.latmor
+                            print "GET_NUM", child2.get_number()
+
+                            child1.ignore()
+                            break
+                            
+
+                        elif child2.orig_lemma == "be":
+                            self.verb_form = "Inf"
+                            self.tense = "pres"
+                            self.voice = "passive"
+
+                            self.update(in_handle_aux=True, exclusions=["verb_form", "tense", "voice"])
+                            child2.ignore()
+                            break
+
+        elif num_aux_children == 3:
             if self.verb_form == "Part":
                 for child1 in self.children[:-2]:
                     child2 = child1.next if child1.next.orig_lemma != "not" else child1.next.next
@@ -916,14 +1100,18 @@ class Verb(Word):
                             child2.orig_lemma = self.orig_lemma
                             child2.lemma = self.lemma
                             child2.tense = "perf"
+                            child2.voice = "passive"
+                            self.case = self.get_case()
+                            child2.mood = self.get_gender()
                             
                             self.verb_form = "Fin"
                             self.orig_lemma = "be"
                             self.lemma = "esse"
                             self.mood = "subj"
                             self.tense = "pres"
+                            self.voice = "active"
                             
-                            child2.update(exclusions=["orig_lemma", "lemma", "verb_form", "tense"])
+                            child2.update(in_handle_aux=True, exclusions=["orig_lemma", "lemma", "verb_form", "tense", "gender"])
                             self.update(in_handle_aux=True, exclusions=["verb_form", "orig_lemma", "lemma", "mood", "tense"])
                             child1.ignore()
                             child3.ignore()
@@ -934,14 +1122,18 @@ class Verb(Word):
                             child2.orig_lemma = self.orig_lemma
                             child2.lemma = self.lemma
                             child2.tense = "perf"
+                            child2.voice = "passive"
+                            self.case = self.get_case()
+                            child2.mood = self.get_gender()
                             
                             self.verb_form = "Fin"
                             self.orig_lemma = "be"
                             self.lemma = "esse"
                             self.mood = "subj"
                             self.tense = "imperf"
+                            self.voice = "active"
                             
-                            child2.update(exclusions=["orig_lemma", "lemma", "verb_form", "tense"])
+                            child2.update(in_handle_aux=True, exclusions=["orig_lemma", "lemma", "verb_form", "tense", "gender"])
                             self.update(in_handle_aux=True, exclusions=["verb_form", "orig_lemma", "lemma", "mood", "tense"])
                             child1.ignore()
                             child3.ignore()
@@ -952,14 +1144,21 @@ class Verb(Word):
                             child2.orig_lemma = self.orig_lemma
                             child2.lemma = self.lemma
                             child2.tense = "perf"
+                            child2.voice = "passive"
+                            child2.mood = "ind"
+                            self.case = self.get_case()
+                            child2.mood = self.get_gender()
 
                             self.verb_form = "Fin"
                             self.orig_lemma = "be"
                             self.lemma = "esse"
                             self.tense = "futureI"
+                            self.voice = "active"
+                            self.mood = "ind"
+
                             
-                            child2.update(exclusions=["orig_lemma", "lemma", "verb_form", "tense"])
-                            self.update(in_handle_aux=True, exclusions=["verb_form", "orig_lemma", "lemma", "tense"])
+                            child2.update(in_handle_aux=True, exclusions=["orig_lemma", "lemma", "verb_form", "tense", "voice", "mood", "gender"])
+                            self.update(in_handle_aux=True, exclusions=["verb_form", "orig_lemma", "lemma", "tense", "voice", "mood"])
                             child1.ignore()
                             child3.ignore()
                             break
@@ -980,6 +1179,11 @@ class Verb(Word):
         if self.verb_form == "Inf":
             # delectare --> delectare<V><pres><inf><active>
             return "%s<%s><%s><inf><%s>" % (self.inf, VERBlm, self.tense, self.voice)
+
+        if self.verb_form == "gerundivum":
+            # delectandus --> delectare<V><gerundivum><positive><masc><sg><nom>
+            return "%s<%s><positive><%s><%s><%s>" % (self.inf, self.verb_form, self.gender, self.number, self.case)
+
 
         return "INVALID_VERB_FORM"
 
@@ -1012,10 +1216,10 @@ def makeword(wordinfo):
         word = Word(wordinfo)
         word.latmor = "IRREG_"+lemma
     elif lemma_lower in ["iesus", "iesum", "iesu"]:
-        word = Word(wordinfo)
+        word = Noun(wordinfo)
         if "Case=Nom" in feats_str: word.latmor = "IRREG_" + lemma[0] + "ēsus"
         elif "Case=Acc" in feats_str: word.latmor = "IRREG_" + lemma[0] + "ēsum"
-        else: word.latmor = "IRREG_" + lemma[0] + "Iēsū"
+        else: word.latmor = "IRREG_" + lemma[0] + "ēsū"
 
     #
     # elif lemma.endswith("que") or lemma.endswith("ve") or lemma.endswith("ne"):
