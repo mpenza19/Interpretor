@@ -1,6 +1,0 @@
-is<PRO><dem><masc><sg><nom>
-transferre<V><imperf><ind><active><sg><3>
-is<PRO><dem><masc><sg><acc>
-ad<PREP>
-Iesus<PN><masc><sg><acc>
-PUNCT_.

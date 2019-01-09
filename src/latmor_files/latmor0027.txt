@@ -1,9 +1,0 @@
-hodie<ADV>
-is<PRO><dem><masc><pl><nom>
-destinare<V><part><perf><passive><masc><pl><nom>
-esse<V><part><perf><passive><masc><pl><nom>
-esse<V><imperf><ind><active><pl><3>
-ex<PREP>
-ille<PRO><dem><masc><sg><nom>
-*pharisee<PN><masc><sg><abl>
-PUNCT_.
