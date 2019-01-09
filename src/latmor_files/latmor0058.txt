@@ -1,0 +1,8 @@
+tu<PRO><pers><2><sg><nom>
+esse<V><pres><ind><active><sg><3>
+ille<PRO><dem><masc><sg><nom>
+regnator<PN><masc><sg><gen>
+de<PREP>
+Israel<PN><masc><sg><gen>
+PUNCT_!
+PUNCT_"

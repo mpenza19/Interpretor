@@ -178,7 +178,7 @@ def print_orig_tree(root):
 
 
 def test_eng_tree():
-    parse_filename = "parses0000.txt"
+    parse_filename = "parses0000.conllu"
     root, nodes = maketree(parse_filename)
     print "\n\n"
     print_orig_tree(root)

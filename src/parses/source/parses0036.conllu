@@ -1,0 +1,22 @@
+# newdoc
+# newpar
+# sent_id = 1
+1	And	and	CCONJ	CC	_	4	cc	_	_
+2	I	I	PRON	PRP	Case=Nom|Number=Sing|Person=1|PronType=Prs	4	nsubj	_	_
+3	have	have	AUX	VBP	Mood=Ind|Tense=Pres|VerbForm=Fin	4	aux	_	_
+4	seen	see	VERB	VBN	Tense=Past|VerbForm=Part	0	root	_	_
+5	and	and	CCONJ	CC	_	6	cc	_	_
+6	have	have	VERB	VB	VerbForm=Inf	4	conj	_	_
+7	borne	borne	NOUN	NN	Number=Sing	8	compound	_	_
+8	witness	witness	NOUN	NN	Number=Sing	6	obj	_	_
+9	that	that	PRON	WDT	PronType=Rel	13	mark	_	_
+10	this	this	PRON	DT	Number=Sing|PronType=Dem	13	nsubj	_	_
+11	is	be	AUX	VBZ	Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin	13	cop	_	_
+12	the	the	DET	DT	Definite=Def|PronType=Art	13	det	_	_
+13	Son	son	PROPN	NNP	Number=Sing	8	acl:relcl	_	_
+14	of	of	ADP	IN	_	15	case	_	_
+15	God	god	PROPN	NNP	Number=Sing	13	nmod	_	_
+16	.	.	PUNCT	.	_	4	punct	_	_
+17	"	"	PUNCT	''	_	4	punct	_	_
+
+

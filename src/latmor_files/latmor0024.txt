@@ -1,0 +1,11 @@
+deserere<V><pres><inf><active>
+ego<PRO><pers><1><pl><acc>
+habere<V><pres><inf><active>
+*an<ADJ><positive><neut><sg><acc>
+responsum<N><neut><sg><acc>
+pro<PREP>
+ille<PRO><dem><masc><pl><dat>
+qui<PRO><rel><masc><pl><nom>
+*sent<V><imperf><ind><active><pl><3>
+ego<PRO><pers><1><pl><acc>
+PUNCT_.

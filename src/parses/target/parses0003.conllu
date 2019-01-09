@@ -1,0 +1,15 @@
+1		ille	DET	DT	Definite=Def|PronType=Art	3	det	_	_
+2		lucidus	ADJ	JJ	Degree=Pos	3	amod	_	_
+3		fulgor	NOUN	NNS	Number=Plur	13	nsubj	_	_
+4		in	ADP	IN	_	6	case	_	_
+5		ille	DET	DT	Definite=Def|PronType=Art	6	det	_	_
+6		obscuritas	NOUN	NN	Number=Sing	3	nmod	_	_
+7		,	PUNCT	,	_	13	punct	_	_
+8		et	CCONJ	CC	_	13	cc	_	_
+9		ille	DET	DT	Definite=Def|PronType=Art	10	det	_	_
+10		obscuritas	NOUN	NN	Number=Sing	13	nsubj	_	_
+11		habeo	AUX	VBZ	Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin	13	aux	_	_
+12		non	PART	RB	Polarity=Neg	13	advmod	_	_
+13		convinco	VERB	VB	VerbForm=Inf	0	root	_	_
+14		is	PRON	PRP	Case=Acc|Gender=Neut|Number=Sing|Person=3|PronType=Prs	13	obj	_	_
+15		.	PUNCT	.	_	13	punct	_	_

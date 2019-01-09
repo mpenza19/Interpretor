@@ -81,7 +81,7 @@ def main():
         with open("./text/"+tf, "r") as f: txt = f.read()
         processed = process_text(txt, pipeline, error)
         rawparse = processed.split('\n')
-        filename = "./parses/source/parses"+tf[4:tf.find(".")]+".txt"
+        filename = "./parses/source/parses"+tf[4:tf.find(".")]+".conllu"
         with open(filename, "w") as udpf:
             for line in rawparse: udpf.write(line + '\n')
 

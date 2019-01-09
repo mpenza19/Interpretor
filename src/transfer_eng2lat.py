@@ -45,7 +45,7 @@ def write_latparse(engparse_filename):
     lat_lemmas = call_python3("lemma_trans", "translate_sentence", arg_list)
     print ' '.join(lat_lemmas), '\n'
 
-    with open("./parses/target/"+engparse_filename[:6]+filenum+".txt", "w") as f:
+    with open("./parses/target/"+engparse_filename[:6]+filenum+".conllu", "w") as f:
         lemma_index = 0
         for line in raw_engparse:
             line[1] = ''
@@ -54,12 +54,12 @@ def write_latparse(engparse_filename):
             f.write('\t'.join(line))
 
 
-engparse_files = sorted([filename for filename in os.listdir("./parses/source") if filename.endswith(".txt")])
+engparse_files = sorted([filename for filename in os.listdir("./parses/source") if filename.endswith(".conllu")])
 
 
 if len(sys.argv) > 1:
     filenum = sys.argv[1].zfill(4)
-    engparse_filename = "parses"+filenum+".txt"
+    engparse_filename = "parses"+filenum+".conllu"
     write_latparse(engparse_filename)
 else:
     p = mp.Pool(processes=8)

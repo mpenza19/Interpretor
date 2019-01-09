@@ -1,0 +1,13 @@
+ille<PRO><dem><masc><sg><nom>
+verus<ADJ><positive><masc><sg><nom>
+lux<N><masc><sg><nom>
+qui<PRO><rel><masc><sg><nom>
+illustrare<V><pres><ind><active><sg><3>
+omnis<ADJ><positive><masc><pl><acc>
+homo<N><masc><sg><acc>
+esse<V><imperf><ind><active><sg><3>
+*coming<V><imperf><ind><passive><sg><3>
+in<PREP>
+ille<PRO><dem><masc><sg><nom>
+terra<N><fem><sg><acc>
+PUNCT_.

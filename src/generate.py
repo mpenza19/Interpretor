@@ -132,7 +132,7 @@ def generate(parse_filename):
 #####################################
 
 
-parse_files = sorted([filename for filename in os.listdir("./parses/target") if filename.endswith(".txt")])
+parse_files = sorted([filename for filename in os.listdir("./parses/target") if filename.endswith(".conllu")])
 print "PARSE_FILES"
 for pf in parse_files: print pf
 

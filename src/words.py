@@ -127,7 +127,7 @@ class Word:
         deprel = self.deprel
         orig_lemma = self.orig_lemma
 
-        return index, form, lemma, pos, feats_str, parent, deprel, orig_lemma
+        return index, form, lemma, pos, feats_str, parent_index, deprel, orig_lemma
 
     @staticmethod
     def get_latmor_default(myform):
@@ -368,7 +368,7 @@ class Noun(Word):
 
             if ptlm == "pers":
                 if pers != 3:
-                    self.ignore()
+                    if self.case == "nom": self.ignore()
 
                     if self.lemma == "nos": self.lemma = "ego"
                     if self.lemma == "vos": self.lemma = "tu"
@@ -383,7 +383,7 @@ class Noun(Word):
                     return "%s<%s><%s><%s><%s><%s>" % (self.lemma, PRONlm, ptlm, self.gender, self.number, self.case)
             
             elif not poss:
-                self.ignore()
+                if self.case == "nom": self.ignore()
                 return "%s<%s><%s><%s><%s><%s>" % (self.lemma, PRONlm, ptlm, self.gender, self.number, self.case)
             
             else:
@@ -724,7 +724,7 @@ class Verb(Word):
                     if hasattr(sib, "gender"): 
                         return sib.gender
                         
-            if self.deprel in ("acl", "acl:relcl") and self.parent and hasattr(parent, "gender"):
+            if self.deprel in ("acl", "acl:relcl") and self.parent and hasattr(self.parent, "gender"):
                 return self.parent.gender
 
             if self.children:

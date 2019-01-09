@@ -39,6 +39,9 @@ class LemmaTrans:
             sys.stderr.write("Invalid input: direction (sys.argv[1]) must be 'eng2lat' or 'lat2eng'.\n")
             exit()
         
+        print(swn.language, len(list(swn.lemmas)))
+        print(twn.language, len(list(twn.lemmas)))
+
         return swn, twn
 
     def get_best_target_synset(self, source_synsets, source_lemma):

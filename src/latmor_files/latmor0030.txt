@@ -1,0 +1,14 @@
+hic<PRO><dem><masc><sg><nom>
+capessere<V><imperf><ind><active><sg><3>
+locus<N><masc><sg><acc>
+in<PREP>
+*bethany<PN><masc><sg><abl>
+ultra<PREP>
+ille<PRO><dem><masc><sg><nom>
+*jordan<N><masc><sg><acc>
+PUNCT_,
+ubi<CONJ>
+Ioannes<PN><masc><sg><nom>
+esse<V><imperf><ind><active><sg><3>
+*baptize<ADJ><positive><neut><sg><nom>
+PUNCT_.

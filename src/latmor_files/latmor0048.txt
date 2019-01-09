@@ -1,0 +1,10 @@
+ille<PRO><dem><masc><sg><nom>
+proximus<ADJ><positive><masc><sg><gen>
+dies<N><masc><sg><gen>
+iesus<N><masc><pl><nom>
+decernere<V><imperf><ind><active><pl><3>
+*to<PART>
+ire<V><pres><inf><active>
+ad<PREP>
+*galilee<PN><masc><sg><acc>
+PUNCT_.

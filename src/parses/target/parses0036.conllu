@@ -1,0 +1,17 @@
+1		et	CCONJ	CC	_	4	cc	_	_
+2		ego	PRON	PRP	Case=Nom|Number=Sing|Person=1|PronType=Prs	4	nsubj	_	_
+3		habeo	AUX	VBP	Mood=Ind|Tense=Pres|VerbForm=Fin	4	aux	_	_
+4		specio	VERB	VBN	Tense=Past|VerbForm=Part	0	root	_	_
+5		et	CCONJ	CC	_	6	cc	_	_
+6		habeo	VERB	VB	VerbForm=Inf	4	conj	_	_
+7		*borne	NOUN	NN	Number=Sing	8	compound	_	_
+8		servator	NOUN	NN	Number=Sing	6	obj	_	_
+9		qui	PRON	WDT	PronType=Rel	13	mark	_	_
+10		hic	PRON	DT	Number=Sing|PronType=Dem	13	nsubj	_	_
+11		sum	AUX	VBZ	Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin	13	cop	_	_
+12		ille	DET	DT	Definite=Def|PronType=Art	13	det	_	_
+13		filius	PROPN	NNP	Number=Sing	8	acl:relcl	_	_
+14		de	ADP	IN	_	15	case	_	_
+15		divus	PROPN	NNP	Number=Sing	13	nmod	_	_
+16		.	PUNCT	.	_	4	punct	_	_
+17		"	PUNCT	''	_	4	punct	_	_

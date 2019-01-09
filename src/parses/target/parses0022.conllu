@@ -1,0 +1,8 @@
+1		et	CCONJ	CC	_	3	cc	_	_
+2		is	PRON	PRP	Case=Nom|Gender=Masc|Number=Sing|Person=3|PronType=Prs	3	nsubj	_	_
+3		respondeo	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	0	root	_	_
+4		,	PUNCT	,	_	6	punct	_	_
+5		"	PUNCT	``	_	6	punct	_	_
+6		No	INTJ	UH	_	3	ccomp	_	_
+7		.	PUNCT	.	_	6	punct	_	_
+8		"	PUNCT	''	_	6	punct	_	_

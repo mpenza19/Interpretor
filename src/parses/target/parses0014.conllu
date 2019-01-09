@@ -1,0 +1,16 @@
+1		pro	ADP	IN	_	3	case	_	_
+2		ille	DET	DT	Definite=Def|PronType=Art	3	det	_	_
+3		lex	NOUN	NN	Number=Sing	5	nsubj:pass	_	_
+4		sum	AUX	VBD	Mood=Ind|Number=Sing|Person=3|Tense=Past|VerbForm=Fin	5	aux:pass	_	_
+5		perhibeo	VERB	VBN	Tense=Past|VerbForm=Part	0	root	_	_
+6		per	ADP	IN	_	7	case	_	_
+7		*mose	NOUN	NNS	Number=Plur	5	obl	_	_
+8		;	PUNCT	:	_	9	punct	_	_
+9		honor	NOUN	NN	Number=Sing	7	conj	_	_
+10		et	CCONJ	CC	_	12	cc	_	_
+11		veritas	NOUN	NN	Number=Sing	12	nsubj	_	_
+12		*came	VERB	VBD	Mood=Ind|Tense=Past|VerbForm=Fin	7	conj	_	_
+13		per	ADP	IN	_	15	case	_	_
+14		Iesus	PROPN	NNP	Number=Sing	15	compound	_	_
+15		Christus	PROPN	NNP	Number=Sing	12	obl	_	_
+16		.	PUNCT	.	_	5	punct	_	_
