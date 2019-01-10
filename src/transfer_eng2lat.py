@@ -43,7 +43,6 @@ def write_latparse(engparse_filename):
     
     arg_list = [direction, eng_lemmas, mwn_pos_list]
     lat_lemmas = call_python3("lemma_trans", "translate_sentence", arg_list)
-    print ' '.join(lat_lemmas), '\n'
 
     with open("./parses/target/"+engparse_filename[:6]+filenum+".conllu", "w") as f:
         lemma_index = 0
@@ -55,7 +54,6 @@ def write_latparse(engparse_filename):
 
 
 engparse_files = sorted([filename for filename in os.listdir("./parses/source") if filename.endswith(".conllu")])
-
 
 if len(sys.argv) > 1:
     filenum = sys.argv[1].zfill(4)

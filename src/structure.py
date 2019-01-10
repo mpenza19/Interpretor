@@ -145,13 +145,9 @@ def buildtree(wordinfos):
 
     # Set words' children and siblings links
     for (i, this_node) in nodes.iteritems():
-        #print "SETTING CHILDREN OF %s" % this_node.word.lemma
         this_node.word.children = [child.word for child in this_node.children]
-        
-        #print "SETTING SIBLINGS OF %s" % this_node.word.lemma
         this_node.word.siblings = [sibling.word for sibling in this_node.siblings]
-        
-    
+
     for this_node in nodes.values():
         this_node.word.update()
         
@@ -161,6 +157,7 @@ def buildtree(wordinfos):
 def maketree(parse_filename, wordinfos=None):
     if not wordinfos: wordinfos = get_all_wordinfos_from_parse(parse_filename)
     root, nodes = buildtree(wordinfos)
+
     return root, nodes
 
 
@@ -172,9 +169,9 @@ def print_tree(root):
 
 def print_orig_tree(root):
     # Print tree from root
-    for pre, fill, node in RenderTree(root):
-        print "%s %s :: %s" % (pre.encode('utf8'), node.word.orig_lemma, node.word.deprel)
-    print "\n---------\n"
+    with open("root.txt", "w") as f:
+        for pre, fill, node in RenderTree(root):
+            f.write("%s%s :: %s\n" % (pre.encode('utf8'), node.word.orig_lemma, node.word.deprel))
 
 
 def test_eng_tree():
@@ -184,4 +181,4 @@ def test_eng_tree():
     print_orig_tree(root)
     print "\n\n"
 
-test_eng_tree()
+#test_eng_tree()

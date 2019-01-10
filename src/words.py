@@ -819,7 +819,6 @@ class Verb(Word):
                         self.tense = mytense
                         self.voice = myvoice
                         self.update(in_handle_aux=True, exclusions=["orig_lemma", "lemma", "verb_form", "tense", "voice"])
-                        print "LATMOR", self.latmor
 
                         if myvoice == "passive":
                             child.pos = VERBlm
@@ -917,7 +916,6 @@ class Verb(Word):
                             child.verb_form = "gerundivum"
                             #child.latmor = child.get_latmor()
                             child.update(in_handle_aux=True, exclusions=["number"])
-                            print "LATMOR", child.latmor
 
                             self.verb_form = "Fin"
                             self.orig_lemma = "be"
@@ -1072,8 +1070,6 @@ class Verb(Word):
                             
                             child2.verb_form = "gerundivum"
                             child2.update(in_handle_aux=True, exclusions=["number"])
-                            print "LATMOR", child2.latmor
-                            print "GET_NUM", child2.get_number()
 
                             child1.ignore()
                             break

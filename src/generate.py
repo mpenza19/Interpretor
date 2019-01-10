@@ -68,23 +68,9 @@ def generate(parse_filename):
                     latmor_gens[key] = words.Word.get_indiv_gen(lm, resolve_alt=True)
                     break
 
-    print "PRE-IGNORE"
-    for i, lg in latmor_gens.iteritems(): print i, lg
-
     for i in ignore_indices:
         del nodes[i]
         del latmor_gens[i]
-
-    print "COMPARISON:"
-    for i in nodes:
-        print nodes[i].word.latmor, latmor_gens[i]
-
-
-
-    print "\nPOST-IGNORE"
-    for i, lg in latmor_gens.iteritems(): print i, lg
-
-
 
     replacements = dict()
     for i in latmor_gens:
@@ -133,9 +119,6 @@ def generate(parse_filename):
 
 
 parse_files = sorted([filename for filename in os.listdir("./parses/target") if filename.endswith(".conllu")])
-print "PARSE_FILES"
-for pf in parse_files: print pf
-
 
 if len(sys.argv) > 1:
     filenum = int(sys.argv[1])
